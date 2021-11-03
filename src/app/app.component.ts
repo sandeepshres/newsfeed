@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FetchMovieService } from './shared/fetch-movie.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'newsfeed';
+  title = 'News Feed app';
+  movies: any;
+
+  constructor(private movieService: FetchMovieService) {}
+
+  ngOnInit() {
+    this.movieService.getMovies().subscribe( data => this.movies = data);
+  }
 }
